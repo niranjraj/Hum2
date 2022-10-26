@@ -1,0 +1,39 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.62em;
+  color: #5b628b;
+  font-size: 0.75rem;
+  line-height: 1.125;
+  letter-spacing: -0.25px;
+  padding-top: 1em;
+  font-weight: 700;
+  font-family: "Montserrat-Semibold";
+  transition: color 300ms ease;
+}
+.input-field-main,
+.store-name {
+  width: 100%;
+  border-radius: 4px;
+  padding: 1.2em 1.25em;
+  background: #ffffff;
+  color: #5b628b;
+  border: 1px solid #dfe3fa;
+  outline: none;
+  font-size: 0.85rem;
+  line-height: 1.125;
+  letter-spacing: -0.25px;
+  font-weight: bold;
+  transition: color 300ms ease, background 300ms ease, border 300ms ease;
+}
+
+.input-field-main:focus,
+.store-name:focus {
+  border: 1px solid #7989e9;
+}
+.input-label.touched-label {
+  color: #cc0033;
+}
+.input-field-main.touched-input {
+  border: 1px solid #cc0033;
+}

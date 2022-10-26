@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  role         String?     @default("user")
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  orders        Order[]
+  trackers      Tracker[]
+ 
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+
+
+model Order {
+  id           String    @id @default(cuid())
+  active       Boolean   @default(true)
+  paid         Boolean   @default(false)
+  name          String?
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  phoneNumber  String    
+  orderItem    OrderItem[]
+  location      String?
+  createdAt     DateTime   @default(now())
+  category      String?
+  store         String?
+}
+
+
+model OrderItem {
+  id           String    @id @default(cuid())
+  name          String?
+  quantity      Int?
+  unit          String?
+  orderId       String
+  order         Order     @relation(fields: [orderId], references: [id])
+
+
+}
+
+model Tracker {
+  id           String    @id @default(cuid())
+  trackerNumber String? 
+  otp           String?
+  otpVerifed    Boolean  @default(false)
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+
+}

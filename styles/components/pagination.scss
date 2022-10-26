@@ -1,0 +1,34 @@
+.admin-order-list-pagination {
+  width: 30%;
+}
+.pagination-btn-wrapper {
+  display: flex;
+  align-items: center;
+
+  & a {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5em;
+    width: 30px;
+    height: 30px;
+
+    font-size: 1.1rem;
+    font-family: "Montserrat-Semibold";
+    border: 1px solid #eff2fa;
+    border-radius: 5px;
+  }
+  .pagination-page-btn a {
+    background-color: #ffffff;
+  }
+
+  .pagination-next-btn,
+  .pagination-prev-btn {
+    border: none;
+  }
+  .pagination-active-btn {
+    background-color: #1c1e2b !important;
+    color: #ffffff;
+  }
+}

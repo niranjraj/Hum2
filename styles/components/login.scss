@@ -1,0 +1,125 @@
+@use "../base/function.scss" as *;
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.login-content-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  @include tablet-landscape-and-below {
+    flex-direction: column-reverse;
+  }
+}
+.login-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include tablet-landscape-and-below {
+    width: 100%;
+    height: 50%;
+    padding: 4em 3em;
+  }
+  @include mobile-landscape-and-below {
+    padding: 1em;
+  }
+
+  & h2 {
+    font-family: "Montserrat";
+    font-size: 2.5rem;
+    line-height: 1.125;
+    text-align: center;
+    letter-spacing: -0.25px;
+    color: #1c1e2b;
+  }
+  & > p {
+    padding: 2em 0;
+    color: #7e8591;
+    font-size: 1rem;
+    text-align: center;
+    font-family: "Montserrat-Semibold";
+  }
+}
+
+.login-img-wrapper {
+  background: url("/loginhum.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 5em 3em;
+
+  height: 100%;
+  width: 50%;
+  @include tablet-landscape-and-below {
+    width: 100%;
+    height: 50%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-position: center;
+    padding: 0;
+  }
+}
+
+.login-btn-wrapper {
+  @include mobile-landscape-and-below {
+    width: 100%;
+  }
+}
+
+.google-btn,
+.login-back-btn {
+  border: none;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  width: 400px;
+  font-family: "Montserrat-Semibold";
+  font-size: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include mobile-landscape-and-below {
+    width: 100%;
+  }
+
+  & svg {
+    height: 30px;
+    width: 30px;
+    padding-right: 0.5em;
+  }
+}
+.google-btn {
+  background-color: #ffffff;
+  color: #131b2b;
+
+  border: 1px solid #dfdfe3;
+  @include tablet-landscape-and-below {
+    margin-bottom: 2em;
+    padding: 1em 2em;
+  }
+  @include mobile-landscape-and-below {
+    padding: 1em;
+  }
+}
+
+.login-back-btn {
+  padding: 0.75em 1em;
+  background-color: #1c1e2b;
+  color: #ffffff;
+  text-align: center;
+  @include tablet-landscape-and-below {
+    margin-bottom: 2em;
+    padding: 1em 2em;
+  }
+  @include mobile-landscape-and-below {
+    padding: 1em;
+  }
+}
