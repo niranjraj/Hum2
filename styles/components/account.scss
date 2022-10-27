@@ -29,6 +29,9 @@
     background-color: #282b3f;
     color: #ffffff;
     cursor: pointer;
+    &:hover {
+      background-color: #3c4165;
+    }
   }
 }
 
@@ -254,6 +257,11 @@
   }
 }
 
+.order-span {
+  @include tablet-landscape-and-below {
+    display: none;
+  }
+}
 .active-lb {
   background-color: #ffffff;
   border-radius: 2px;
@@ -289,7 +297,7 @@
   padding-top: 0.75em;
   & p {
     display: flex;
-    color: #686f7d;
+
     letter-spacing: 1.2px;
     word-break: break-all;
 
@@ -312,4 +320,12 @@
     @include mobile-landscape-and-below {
     }
   }
+}
+
+.paid-tag {
+  font-family: "Montserrat-Semibold";
+  background-color: rgb(249, 135, 135, 0.5);
+  color: #a62b2b;
+  padding: 0.5em 1em;
+  margin-top: 0.5em;
 }

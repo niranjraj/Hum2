@@ -83,6 +83,7 @@ const Admin: NextPage = (props) => {
     }
   };
   const handleSelected = async (handleKey: string) => {
+    console.log("in here");
     try {
       if (selectedOrder.length < 1) {
         return;
@@ -96,6 +97,7 @@ const Admin: NextPage = (props) => {
         });
         if (res.status == 200) {
           dispatch(setSelectedOrder([]));
+          setModal(false);
         }
       }
     } catch (err) {

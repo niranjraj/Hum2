@@ -23,6 +23,7 @@ export interface ActiveOrder {
   id: string;
   category: string;
   orderItem: Item[];
+  paid: boolean;
   name: string;
   createdAt: string;
   store: string;
@@ -33,7 +34,7 @@ export interface ActiveOrder {
 export interface AdminOrder {
   id: string;
   category: string;
-
+  paid: boolean;
   name: string;
   createdAt: string;
   store: string;

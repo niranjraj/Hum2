@@ -24,7 +24,7 @@ import {
 
 import { useAppSelector, useAppDispatch } from "../redux/redux-hook";
 import { setErrorAccountValue, setErrorAdminValue } from "../redux/util-slice";
-import { config } from "../utils/initialValues";
+import { config, paidColors, statusColors } from "../utils/initialValues";
 
 const Account: NextPage<{ userId: string }> = (props) => {
   const orderItemRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -40,6 +40,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
   const activeOrder = useAppSelector((state) => state.order.activeOrder);
   const accountError = useAppSelector((state) => state.util.errorAccount);
   const formData = useAppSelector((state) => state.order.formValue);
+  console.log(activeOrder);
 
   const initialCategory = useAppSelector(
     (state) => state.order.initialCategory
@@ -232,9 +233,37 @@ const Account: NextPage<{ userId: string }> = (props) => {
                               "YYYY-MM-DD"
                             ).format("DD MMM YYYY")}
                           </div>
-                          <div className="active-order-status">
-                            <div className="active-order-status-circle"></div>
-                            <p>active</p>
+                          <div
+                            className="active-order-status"
+                            style={{
+                              backgroundColor: `${
+                                item.active
+                                  ? statusColors.active.transColor
+                                  : statusColors.confirmed.transColor
+                              }`,
+                            }}
+                          >
+                            <div
+                              className="active-order-status-circle"
+                              style={{
+                                backgroundColor: `${
+                                  item.active
+                                    ? statusColors.active.backgroundColor
+                                    : statusColors.confirmed.backgroundColor
+                                }`,
+                              }}
+                            ></div>
+                            <p
+                              style={{
+                                color: `${
+                                  item.active
+                                    ? statusColors.active.color
+                                    : statusColors.confirmed.color
+                                }`,
+                              }}
+                            >
+                              {item.active ? "active" : "confirmed"}
+                            </p>
                           </div>
                         </li>
 
@@ -281,7 +310,10 @@ const Account: NextPage<{ userId: string }> = (props) => {
                               </p>
                               <div className="active-lb-info">
                                 <p className="active-lb-order-id">
-                                  <span>Order Id:</span>
+                                  <span>
+                                    <span className="order-span">Order</span>{" "}
+                                    Id:
+                                  </span>
                                   {`#${item.id}`}
                                 </p>
 
@@ -292,6 +324,23 @@ const Account: NextPage<{ userId: string }> = (props) => {
                                 <p>
                                   <span>Store:</span>
                                   {item.store}
+                                </p>
+                                <p
+                                  className="paid-tag"
+                                  style={{
+                                    backgroundColor: `${
+                                      item.paid
+                                        ? paidColors.paid.transColor
+                                        : paidColors.notPaid.transColor
+                                    }`,
+                                    color: `${
+                                      item.paid
+                                        ? paidColors.paid.color
+                                        : paidColors.notPaid.color
+                                    }`,
+                                  }}
+                                >
+                                  {item.paid ? "Paid" : "Not Paid"}
                                 </p>
                               </div>
                             </div>

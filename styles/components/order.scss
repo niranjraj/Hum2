@@ -415,6 +415,9 @@ fieldset {
   justify-content: space-between;
   height: 80%;
   overflow-y: hidden;
+  @include mobile-landscape-and-below {
+    height: 70%;
+  }
 
   & h4 {
     font-size: 1rem;

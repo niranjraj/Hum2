@@ -20,7 +20,18 @@ export const statusColors = {
     transColor: "rgba(51, 214, 159, 0.04)",
   },
 };
-
+export const paidColors = {
+  notPaid: {
+    backgroundColor: "#f98787",
+    color: "#a62b2b",
+    transColor: "rgb(249, 135, 135, 0.5)",
+  },
+  paid: {
+    backgroundColor: "#87F994",
+    color: "#369d42",
+    transColor: "rgba(135, 249, 148, 0.5)",
+  },
+};
 const prod = {
   url: {
     API_URL: "https://iiser.humeats.com",
