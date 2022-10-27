@@ -1,9 +1,32 @@
+@use "../base/function.scss" as *;
 .admin-container {
   background-color: #f4f5fa;
   height: 100vh;
   display: flex;
   position: relative;
+  & > * {
+    @include tablet-landscape-and-below {
+      display: none;
+    }
+  }
+
+  & .mobile-only-view {
+    display: none;
+    @include tablet-landscape-and-below {
+      font-size: 5rem;
+
+      width: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      display: initial;
+      font-family: "Montserrat-Semibold";
+    }
+  }
 }
+
 .admin-content-wrapper {
   height: 100%;
   padding: 2em 3em;

@@ -129,7 +129,7 @@ export const OrderPage2 = (props: OrderProps2) => {
                     <label>
                       <Field type="radio" name="category" value="Nilgiris" />
                       <Image
-                        src="Nilgiris.png"
+                        src="/Nilgiris.png"
                         width="150"
                         height="150"
                         alt="Nilgiris"
@@ -298,7 +298,7 @@ export const OrderPage3 = (props: OrderProps3) => {
                                 label="Qty."
                                 name={`orderItem[${index}].quantity`}
                                 number={true}
-                                min="0"
+                                min="1"
                                 hideLabels={index > 0}
                               />
                               <div className="select-wrapper">

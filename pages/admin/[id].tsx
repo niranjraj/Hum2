@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { current } from "@reduxjs/toolkit";
 import prisma from "../../utils/prismaInit";
-import { statusColors } from "../../utils/initialValues";
+import { config, statusColors } from "../../utils/initialValues";
 import { useSession } from "next-auth/react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { MdPaid } from "react-icons/md";
@@ -21,7 +21,7 @@ const AdminPreview: NextPage<{ serializedOrder: Serialized }> = (props) => {
 
   const router = useRouter();
   const handleRequest = async (handleKey: string) => {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/order/active`, {
+    const res = await fetch(`${config.url.API_URL}/api/order/active`, {
       body: JSON.stringify({
         selectedOrder: [currentPreview.id],
         selected: handleKey,

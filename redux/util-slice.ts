@@ -20,13 +20,13 @@ export const utilSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setErrorSignValue: (state, action: PayloadAction<string>) => {
+    setErrorSignValue: (state, action: PayloadAction<string | null>) => {
       state.errorSign = action.payload;
     },
-    setErrorAccountValue: (state, action: PayloadAction<string>) => {
+    setErrorAccountValue: (state, action: PayloadAction<string | null>) => {
       state.errorAccount = action.payload;
     },
-    setErrorAdminValue: (state, action: PayloadAction<string>) => {
+    setErrorAdminValue: (state, action: PayloadAction<string | null>) => {
       state.errorAdmin = action.payload;
     },
   },

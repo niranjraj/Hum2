@@ -124,6 +124,7 @@ body.form-modal-open {
   cursor: pointer;
   @include tablet-landscape-and-below {
     font-size: 1.2rem;
+    padding: 1em 1.5em;
   }
 }
 
@@ -181,15 +182,16 @@ form {
   }
 
   /* IMAGE STYLES */
-  [type="radio"] + span {
+  [type="radio"] + img {
     cursor: pointer;
 
-    outline: 10px solid rgb(210, 210, 224);
+    border: 10px solid rgb(210, 210, 224);
+    border-radius: 5px;
   }
 
   /* CHECKED STYLES */
-  [type="radio"]:checked + span {
-    outline: 10px solid rgb(102, 102, 247);
+  [type="radio"]:checked + img {
+    border: 10px solid rgb(102, 102, 247);
   }
 }
 .fields-wrapper {
@@ -199,7 +201,7 @@ form {
   flex-direction: column;
   height: 90%;
   @include mobile-landscape-and-below {
-    height: 85%;
+    height: 70%;
   }
 }
 
@@ -337,7 +339,7 @@ fieldset {
 .form-bottom {
   height: 10%;
   @include mobile-landscape-and-below {
-    height: 15%;
+    padding-top: 1em;
   }
 }
 

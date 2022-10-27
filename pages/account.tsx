@@ -23,7 +23,8 @@ import {
 } from "../redux/order-slice";
 
 import { useAppSelector, useAppDispatch } from "../redux/redux-hook";
-import { setErrorAccountValue } from "../redux/util-slice";
+import { setErrorAccountValue, setErrorAdminValue } from "../redux/util-slice";
+import { config } from "../utils/initialValues";
 
 const Account: NextPage<{ userId: string }> = (props) => {
   const orderItemRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -58,7 +59,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
   };
   const handleRequest = async (formValues: FormValues) => {
     try {
-      const res = await fetch(`${process.env.NEXTAUTH_URL}api/order`, {
+      const res = await fetch(`${config.url.API_URL}/api/order`, {
         body: JSON.stringify(formValues),
         method: "POST",
         headers: {
@@ -118,7 +119,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
     try {
       const fetchData = async () => {
         const response = await fetch(
-          `${process.env.NEXTAUTH_URL}/api/order/pagination?` +
+          `${config.url.API_URL}/api/order/pagination?` +
             new URLSearchParams({
               userId: props.userId,
               page: activeOrder.length.toString(),
@@ -189,7 +190,12 @@ const Account: NextPage<{ userId: string }> = (props) => {
       <div className="account-container">
         <SideNav />
         {accountError && (
-          <div className="error-sign-wrapper">{accountError}</div>
+          <div
+            className="error-sign-wrapper"
+            onClick={() => dispatch(setErrorAccountValue(null))}
+          >
+            {accountError}
+          </div>
         )}
 
         <div className="account-content">

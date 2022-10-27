@@ -52,13 +52,14 @@
   position: fixed;
   height: 100vh;
   width: 100vw;
+
   top: 0;
   left: 0;
   background-color: rgba(40, 43, 63, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 30;
 }
 .order-modal {
   width: 60%;
