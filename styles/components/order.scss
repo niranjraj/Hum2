@@ -381,8 +381,10 @@ fieldset {
     font-weight: 700;
     color: #ffffff;
     background-color: #282b3f;
+
     @include tablet-landscape-and-below {
       font-size: 1.2rem;
+      height: 20%;
     }
     @include mobile-landscape-and-below {
       padding: 1em;
