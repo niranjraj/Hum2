@@ -51,7 +51,7 @@ const Admin: NextPage = (props) => {
   const [disabel, setDisabled] = useState(false);
 
   const [checkAll, setCheckAll] = useState(false);
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState({ state: false, mode: "payment" });
   const currentList = useAppSelector((state) => state.order.adminOrder);
   const adminOrderCount = useAppSelector((state) => state.order.adminCount);
   const selectedOrder = useAppSelector((state) => state.order.selectedOrder);
@@ -83,7 +83,8 @@ const Admin: NextPage = (props) => {
     }
   };
   const handleSelected = async (handleKey: string) => {
-    console.log("in here");
+    setLoading(true);
+    setDisabled(true);
     try {
       if (selectedOrder.length < 1) {
         return;
@@ -97,11 +98,14 @@ const Admin: NextPage = (props) => {
         });
         if (res.status == 200) {
           dispatch(setSelectedOrder([]));
-          setModal(false);
+          setModal({ state: false, mode: "payment" });
         }
       }
     } catch (err) {
       dispatch(setErrorAdminValue("Failed try again"));
+    } finally {
+      setLoading(false);
+      setDisabled(false);
     }
   };
 
@@ -131,6 +135,7 @@ const Admin: NextPage = (props) => {
     setFilterValues(values);
   };
   const handleDownload = async () => {
+    setLoading(true);
     setDisabled(true);
     try {
       if (filterValues) {
@@ -148,6 +153,7 @@ const Admin: NextPage = (props) => {
       dispatch(setErrorAdminValue("An error occured"));
     } finally {
       setDisabled(false);
+      setLoading(false);
     }
   };
   const fetchData = async (pageNumber: number) => {
@@ -199,21 +205,31 @@ const Admin: NextPage = (props) => {
         <SideNav />
         <div className="admin-content-wrapper">
           {adminError && <div className="error-sign-wrapper">{adminError}</div>}
-          {modal && (
+          {modal.state && (
             <div className="modal-wrapper">
               <div className="modal-container">
-                <h3>Confirm payment for this Order?</h3>
+                <h3>
+                  Confirm{" "}
+                  {modal.mode == "payment"
+                    ? "Payment for this Order?"
+                    : "this Order?"}
+                </h3>
 
                 <div>
                   <button
                     className="confirm-paid-btn"
-                    onClick={() => handleSelected("payment")}
+                    disabled={disabel}
+                    onClick={() => handleSelected(modal.mode)}
                   >
-                    Paid
+                    {modal.mode == "payment" ? "Paid" : "Confirm"}
                   </button>
                   <button
                     className="cancel-btn"
-                    onClick={() => setModal(false)}
+                    onClick={() =>
+                      setModal((prev) => {
+                        return { state: false, mode: prev.mode };
+                      })
+                    }
                   >
                     Cancel
                   </button>
@@ -265,12 +281,12 @@ const Admin: NextPage = (props) => {
                   />
                 </div>
 
-                <div className="admin-header-order-id">#</div>
+                <div className="admin-header-order-id">store</div>
                 <div className="admin-header-order-status">status</div>
                 <div className="admin-header-client-name">Client</div>
                 <div className="admin-header-issue-date">issued Date</div>
                 <div className="admin-header-phone">Phone Number</div>
-                <div className="admin-header-store">stores</div>
+                <div className="admin-header-store">category</div>
               </div>
               <ul className="admin-order-list-content">
                 {loading ? (
@@ -288,10 +304,7 @@ const Admin: NextPage = (props) => {
                             onChange={(e) => handleCheck(e)}
                           />
                         </div>
-                        <div className="admin-order-id">{`${item.id.slice(
-                          0,
-                          6
-                        )}...`}</div>
+                        <div className="admin-order-store">{item.store}</div>
                         <div className="admin-order-status">
                           {item.active ? (
                             <MdPending
@@ -308,7 +321,7 @@ const Admin: NextPage = (props) => {
                           {dateFormatter(item.createdAt)}
                         </div>
                         <div className="admin-phone">{item.phoneNumber}</div>
-                        <div className="admin-store">
+                        <div className="admin-category">
                           <Image
                             src={`/${item.category}.png`}
                             width="32"
@@ -335,8 +348,14 @@ const Admin: NextPage = (props) => {
                   </p>
                 </div>
                 <div className="admin-order-button-wrapper">
-                  <button onClick={() => setModal(true)}>Payment</button>
-                  <button onClick={() => handleSelected("confirm")}>
+                  <button
+                    onClick={() => setModal({ state: true, mode: "payment" })}
+                  >
+                    Payment
+                  </button>
+                  <button
+                    onClick={() => setModal({ state: true, mode: "confirm" })}
+                  >
                     confirm
                   </button>
                   <button disabled={disabel} onClick={() => handleDownload()}>

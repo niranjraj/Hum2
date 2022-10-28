@@ -42,7 +42,7 @@ const activeHandler: NextApiHandler = async (req, res) => {
             },
           });
 
-          res.status(200);
+          res.status(200).json(updatedActive);
         }
       }
 
@@ -78,7 +78,7 @@ const activeHandler: NextApiHandler = async (req, res) => {
             },
           });
 
-          res.status(200);
+          res.status(200).json(updatedActive);
         }
       }
     }

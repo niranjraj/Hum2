@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Field, FieldArray, Form, Formik } from "formik";
 import Image from "next/image";
-
+import { BsFillTrashFill } from "react-icons/bs";
 import "yup-phone-lite";
 import Input from "./Input";
 import formErrorMsg from "../utils/errorMessage";
@@ -136,6 +136,15 @@ export const OrderPage2 = (props: OrderProps2) => {
                       />
                     </label>
                     <label>
+                      <Field type="radio" name="category" value="Springs" />
+                      <Image
+                        src="/Springs.png"
+                        width="150"
+                        height="150"
+                        alt="Springs"
+                      />
+                    </label>
+                    <label>
                       <Field
                         type="radio"
                         name="category"
@@ -191,16 +200,30 @@ export const OrderPage2 = (props: OrderProps2) => {
                       />
                     </label>
                     <label>
-                      <Field
-                        type="radio"
-                        name="category"
-                        value="SankersCoffe"
-                      />
+                      <Field type="radio" name="category" value="Paragon" />
                       <Image
-                        src="/SankersCoffe.png"
+                        src="/Paragon.png"
                         width="150"
                         height="150"
-                        alt="Sanker's Coffee"
+                        alt="Paragon"
+                      />
+                    </label>
+                    <label>
+                      <Field type="radio" name="category" value="Sijis" />
+                      <Image
+                        src="/Sijis.png"
+                        width="150"
+                        height="150"
+                        alt="Sijis"
+                      />
+                    </label>
+                    <label>
+                      <Field type="radio" name="category" value="SquareOne" />
+                      <Image
+                        src="/SquareOne.png"
+                        width="150"
+                        height="150"
+                        alt="SquareOne"
                       />
                     </label>
                   </div>
@@ -250,7 +273,7 @@ export const OrderPage3 = (props: OrderProps3) => {
         onSubmit={handleSubmit}
         validationSchema={orderPage3Schema}
       >
-        {({ values, errors, setFieldValue }) => (
+        {({ values, errors, touched, setFieldValue }) => (
           <Form>
             <div className="fields-wrapper">
               {errors.orderItem &&
@@ -287,58 +310,60 @@ export const OrderPage3 = (props: OrderProps3) => {
                       <div className="orderForm-itemList">
                         {values.orderItem.map((item, index) => {
                           return (
-                            <div className="orderForm-item-wrapper" key={index}>
-                              <Input
-                                label="Item Name"
-                                name={`orderItem[${index}].name`}
-                                hideLabels={index > 0}
-                              />
-
-                              <Input
-                                label="Qty."
-                                name={`orderItem[${index}].quantity`}
-                                number={true}
-                                min="1"
-                                hideLabels={index > 0}
-                              />
-                              <div className="select-wrapper">
-                                <p>Select unit</p>
-                                <Field
-                                  as="select"
-                                  name={`orderItem[${index}].unit`}
-                                >
-                                  <option value="" label="Select">
-                                    Select a unit
-                                  </option>
-                                  <option value="number" label="number">
-                                    number
-                                  </option>
-                                  <option value="kilogram" label="kg">
-                                    kilogram
-                                  </option>
-                                  <option value="gram" label="g">
-                                    gram
-                                  </option>
-                                  <option value="litre" label="L">
-                                    litre
-                                  </option>
-                                </Field>
-                              </div>
-
-                              <div className="delete-btn-wrapper">
-                                <p>Delete Item</p>
-                                <button
-                                  className="delete-item-btn"
-                                  type="button"
-                                  onClick={() => helpers.remove(index)}
-                                >
-                                  <Image
-                                    src="/icon-delete.svg"
-                                    alt="delete"
-                                    width="16"
-                                    height="16"
-                                  />
-                                </button>
+                            <div
+                              className="order-form-item-wrapper"
+                              key={index}
+                            >
+                              <p className="item-number">Item {index + 1}</p>
+                              <div className="order-form-item-container">
+                                <Input
+                                  label="Item Name"
+                                  name={`orderItem[${index}].name`}
+                                  hideLabels={index > 0}
+                                />
+                                <div className="order-item-info-wrapper">
+                                  <div className={`quantity-container `}>
+                                    <p>Quantity</p>
+                                    <Input
+                                      label=""
+                                      name={`orderItem[${index}].quantity`}
+                                      number={true}
+                                      min="1"
+                                      hideLabels={index > 0}
+                                    />
+                                    <div className="select-wrapper">
+                                      <Field
+                                        as="select"
+                                        name={`orderItem[${index}].unit`}
+                                      >
+                                        <option value="" label="Unit">
+                                          Select a unit
+                                        </option>
+                                        <option value="number" label="number">
+                                          number
+                                        </option>
+                                        <option value="kilogram" label="kg">
+                                          kilogram
+                                        </option>
+                                        <option value="gram" label="g">
+                                          gram
+                                        </option>
+                                        <option value="litre" label="L">
+                                          litre
+                                        </option>
+                                      </Field>
+                                    </div>
+                                  </div>
+                                  <div className="delete-btn-wrapper">
+                                    <button
+                                      className="delete-item-btn"
+                                      type="button"
+                                      onClick={() => helpers.remove(index)}
+                                    >
+                                      <BsFillTrashFill />
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           );

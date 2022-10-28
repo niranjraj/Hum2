@@ -40,7 +40,6 @@ const Account: NextPage<{ userId: string }> = (props) => {
   const activeOrder = useAppSelector((state) => state.order.activeOrder);
   const accountError = useAppSelector((state) => state.util.errorAccount);
   const formData = useAppSelector((state) => state.order.formValue);
-  console.log(activeOrder);
 
   const initialCategory = useAppSelector(
     (state) => state.order.initialCategory

@@ -224,6 +224,7 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 1em 0.5em;
+  height: 70px;
 
   border-radius: 5px;
   background-color: #ffffff;
@@ -233,6 +234,9 @@
 
   & .active-item-name {
     width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   & .active-item-quantity {
     width: 20%;
@@ -270,6 +274,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  & > p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
   @include tablet-landscape-and-below {
     width: 100%;
   }
@@ -280,8 +294,14 @@
     text-transform: capitalize;
     font-family: "Montserrat-Semibold";
     line-height: 1.125;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 0.5em;
     letter-spacing: -0.25px;
     color: #282b3f;
+
     @include mobile-landscape-and-below {
       font-size: 1rem;
     }
@@ -289,17 +309,23 @@
   & .active-lb-location {
     color: #686f7d;
     font-family: "Montserrat-Semibold";
+    width: 100%;
     line-height: 1.125;
     letter-spacing: -0.25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .active-lb-info {
   padding-top: 0.75em;
   & p {
     display: flex;
-
+    font-family: "Montserrat-Semibold";
     letter-spacing: 1.2px;
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @include mobile-landscape-and-below {
       font-size: 1rem;
@@ -311,14 +337,12 @@
 
     padding-right: 0.75em;
     text-transform: capitalize;
-    font-family: "Montserrat-Semibold";
+
     line-height: 1.125;
     letter-spacing: -0.25px;
     color: #282b3f;
   }
   .active-lb-order-id {
-    @include mobile-landscape-and-below {
-    }
   }
 }
 

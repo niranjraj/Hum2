@@ -4,6 +4,10 @@
   height: 100vh;
   display: flex;
   position: relative;
+  [type="checkbox"] {
+    cursor: pointer;
+  }
+
   & > * {
     @include tablet-landscape-and-below {
       display: none;
@@ -70,7 +74,7 @@
   & div {
     text-transform: uppercase;
     white-space: nowrap;
-    width: 50px;
+
     font-weight: 600;
     font-size: 0.75rem;
     letter-spacing: 0.17px;
@@ -98,40 +102,42 @@
   max-width: 58px !important;
   min-width: 58px !important;
 }
+
 .admin-order-id,
 .admin-header-order-id,
 .admin-header-order-status,
 .admin-order-status {
-  width: 121.375px;
-  min-width: 121.375px;
-  max-width: 121.375px;
-  padding: 1em;
+  width: 10%;
 }
 .admin-header-client-name,
 .admin-client-name {
-  min-width: 303.438px;
-  max-width: 303.438px;
+  width: 30%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 1em;
 }
 .admin-header-issue-date,
 .admin-issue-date {
-  min-width: 182.063px;
-  max-width: 182.063px;
+  width: 10%;
   padding: 1em;
 }
 
 .admin-header-store,
-.admin-store {
-  min-width: 303.438px;
-  max-width: 303.438px;
+.admin-order-store {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1em;
 }
 .admin-header-phone,
 .admin-phone {
-  min-width: 182.063px;
-  max-width: 182.063px;
+  width: 20%;
   padding: 1em;
 }
 .admin-link {
+  width: 10%;
   & svg {
     height: 30px;
     width: 30px;
