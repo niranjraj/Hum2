@@ -5,10 +5,13 @@ import { FcGoogle } from "react-icons/fc";
 import { CgArrowLeft } from "react-icons/cg";
 import { useAppDispatch, useAppSelector } from "../redux/redux-hook";
 import { setErrorSignValue } from "../redux/util-slice";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();
   const signError = useAppSelector((state) => state.util.errorSign);
+
   const handleSignIn = async () => {
     console.log("loging in");
     const response = await signIn("google", { callbackUrl: "/account" })

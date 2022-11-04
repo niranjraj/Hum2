@@ -29,6 +29,7 @@ import {
 } from "../../redux/util-slice";
 import { config, paidColors, statusColors } from "../../utils/initialValues";
 import Wrapper from "../../layout/Wrapper";
+import Router, { useRouter } from "next/router";
 
 const Account: NextPage<{ userId: string }> = (props) => {
   const orderItemRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -44,7 +45,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
   const activeOrder = useAppSelector((state) => state.order.activeOrder);
   const accountError = useAppSelector((state) => state.util.errorAccount);
   const formData = useAppSelector((state) => state.order.formValue);
-
+  const router = useRouter();
   const initialCategory = useAppSelector(
     (state) => state.order.initialCategory
   );
@@ -371,6 +372,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
       </Wrapper>
     );
   }
+
   return <div></div>;
 };
 

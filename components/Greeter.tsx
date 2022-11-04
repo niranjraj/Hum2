@@ -1,10 +1,7 @@
 import React from "react";
 
 import Link from "next/link";
-import DeliveryIcon from "./DeliveryIcon";
-import WhatsappIcon from "./WhatsappIcon";
-import EmailIcon from "./EmailIcon";
-import GmapIcon from "./GmapIcon";
+
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { category } from "../utils/initialValues";
@@ -21,7 +18,10 @@ const Greeter = () => {
       <h1 className="greeter-header">
         Trivandrum is Now Just a <span>Hum</span> Away
       </h1>
-      <button className="order-now-btn" onClick={() => router.push("/account")}>
+      <button
+        className="order-now-btn"
+        onClick={() => router.replace("/account")}
+      >
         Order Now <GrLinkNext />
       </button>
       <div className="banner-wrapper">
