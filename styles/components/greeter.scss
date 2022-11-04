@@ -12,8 +12,8 @@
   background-size: cover;
   background-position: center;
 
-  @include mobile-landscape-and-below {
-    height: 50%;
+  @include tablet-landscape-and-below {
+    height: 80%;
   }
 }
 
@@ -32,7 +32,9 @@
   align-items: center;
   justify-content: space-around;
   transition: width 300ms ease;
-
+  @include tablet-landscape-and-below {
+    top: 40%;
+  }
   & svg {
     width: 20px;
     height: 20px;
@@ -43,17 +45,18 @@
 }
 
 .greeter-header {
-  font-size: 10vw;
+  font-size: clamp(4rem, 15vw, 8rem);
   position: absolute;
   top: 0;
   font-family: "CentraNo2";
   line-height: 1em;
-  padding: 1em 0 1em;
+  padding: 2em 0 0;
+  width: 80%;
+  padding-left: 1em;
   color: #ffffff;
 
-  @include tablet-landscape-and-below {
-    font-size: 16vw;
-    padding: 1em 0;
+  @include mobile-landscape-and-below {
+    padding: 3em 0 0;
   }
   & span {
     color: #b6272b;
@@ -82,35 +85,32 @@
 .banner-wrapper {
   background-color: #d8293a;
 
-  display: flex;
-  flex-direction: column;
+  padding: 0 3em;
+
   position: relative;
-  align-items: center;
+
   justify-content: center;
   padding-bottom: 5em;
   @include mobile-landscape-and-below {
-    align-items: initial;
     padding: 0 0.5em;
+    padding-bottom: 3em;
+    height: 60vh;
   }
 
   .banner-slider {
-    width: 80%;
     @include mobile-landscape-and-below {
       width: 100%;
     }
   }
 
   & h3 {
-    font-weight: "Montserrat-Semibold";
-    font-weight: bold;
+    font-family: "Outfit-Bold";
+    letter-spacing: 1.5px;
+    padding: 1em;
     color: #fbe8cc;
-    font-size: 9vw;
+    font-size: clamp(3rem, 9vw, 7rem);
     @include tablet-landscape-and-below {
-      font-size: 7rem;
-      line-height: 1em;
-    }
-    @include mobile-landscape-and-below {
-      font-size: 5rem;
+      padding: 1em 0;
     }
   }
   & img {
@@ -158,41 +158,33 @@
 }
 .contact-container {
   background-color: #1d1c1c;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 2em;
-  height: 500px;
+
   position: relative;
-  @include tablet-landscape-and-below {
-    flex-direction: column;
-    padding-top: 5em;
+
+  & p {
+    font-family: "CentraNo2";
+    color: #fbe8cc;
+    font-size: 1.5rem;
+    padding: 2em 4em;
+    @include mobile-landscape-and-below {
+      padding: 1em 1.5em;
+    }
   }
   & h2 {
-    position: absolute;
+    font-family: "Outfit-Bold";
+    letter-spacing: 1.5px;
+    padding: 1em;
     color: #fbe8cc;
-    font-family: "CentraNo2";
-    font-size: 7vw;
-    top: 0;
-    left: 20%;
-    @include tablet-landscape-and-below {
-      font-size: 5rem;
-    }
+    font-size: clamp(3rem, 9vw, 7rem);
   }
-  .contact-links {
-    display: flex;
-    width: 30%;
-    justify-content: space-between;
-    @include tablet-landscape-and-below {
-      width: 80%;
-    }
-  }
-  .contact-icon-wrapper {
-    & svg {
-      width: 60px;
-      height: 60px;
-    }
-  }
+}
+.contact-links {
+  display: flex;
+  font-family: "CentraNo2";
+  flex-direction: column;
+  color: #fbe8cc;
+  padding: 2em;
+  font-size: clamp(3rem, 5vw, 5rem);
 }
 // .greeter-main-content {
 //   height: 90%;

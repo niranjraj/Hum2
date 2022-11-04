@@ -21,19 +21,9 @@ const Greeter = () => {
       <h1 className="greeter-header">
         Trivandrum is Now Just a <span>Hum</span> Away
       </h1>
-      <button className="order-now-btn">
+      <button className="order-now-btn" onClick={() => router.push("/account")}>
         Order Now <GrLinkNext />
       </button>
-
-      <div className="greeter-text">
-        <div className="line">
-          Building communities... and communities within communities.
-        </div>
-        <div className="line">
-          HUM is a community platform that aims to connect professional and
-        </div>
-        <div className="line">qualified service providers with clients.</div>
-      </div>
       <div className="banner-wrapper">
         <h3>Our Offers</h3>
         <div className="banner-slider">
@@ -51,6 +41,17 @@ const Greeter = () => {
           </div>
         </div>
       </div>
+
+      <div className="greeter-text">
+        <div className="line">
+          Building communities... and communities within communities.
+        </div>
+        <div className="line">
+          HUM is a community platform that aims to connect professional and
+        </div>
+        <div className="line">qualified service providers with clients.</div>
+      </div>
+
       <div className="slider-partner">
         <h2>Our store partners</h2>
         <div className="slider-container">
@@ -63,9 +64,12 @@ const Greeter = () => {
       </div>
       <div className="contact-container">
         <h2>Get in Touch</h2>
-        <div className="logo-container">
-          <Image src="/humlogo.png" width="150" height="150" alt="Hum" />
-        </div>
+        <p>
+          Choose from a wide variety of stores and supermarkets to purchase
+          from.All you need to do is, Tell us where to go, What needs to be done
+          and when.
+        </p>
+
         <div className="contact-links">
           <div className="contact-icon-wrapper">
             <Link
@@ -73,17 +77,17 @@ const Greeter = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <WhatsappIcon />
+              Whatsapp
             </Link>
           </div>
           <div className="contact-icon-wrapper">
             <Link href={`mailto:${mailInfo.id}?subject=${mailInfo.subject}`}>
-              <EmailIcon />
+              Mail Us
             </Link>
           </div>
           <div className="contact-icon-wrapper">
             <Link href="https://www.google.com/maps/place/HUM+Services/@8.544003,76.941334,16z/data=!4m5!3m4!1s0x0:0xc678b6d2dd551d4c!8m2!3d8.5440035!4d76.9413335?hl=en">
-              <GmapIcon />
+              Find Us
             </Link>
           </div>
         </div>
