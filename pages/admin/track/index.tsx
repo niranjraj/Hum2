@@ -13,6 +13,7 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { MdPending } from "react-icons/md";
 import ReactPaginate from "react-paginate";
 import Loader from "../../../components/Loader";
+import Maintenance from "../../../components/Maintenance";
 import Wrapper from "../../../layout/Wrapper";
 import { parcel } from "../../../types/track";
 import { config } from "../../../utils/initialValues";
@@ -23,6 +24,7 @@ const TrackAdmin: NextPage<{
   activeData: parcel[];
 }> = (props) => {
   const { data: session, status } = useSession({ required: true });
+  // console.log(props.activeData);
   const [currentList, setCurrentList] = useState(props.activeData);
   const [disabel, setDisabled] = useState(false);
   const [modal, setModal] = useState(false);
@@ -103,137 +105,140 @@ const TrackAdmin: NextPage<{
     router.push("/");
   }
   if (session && session?.user?.role == "admin") {
-    return (
-      <Wrapper>
-        <div className="admin-track-content">
-          <div className="admin-order-list-wrapper">
-            <div className="admin-order-list">
-              <div className="admin-order-list-heading">
-                <div className="admin-list-select-all">
-                  <input
-                    type="checkbox"
-                    name="selectAll"
-                    id="selectAll"
-                    onChange={handleSelectAll}
-                  />
-                </div>
+    return <Maintenance />;
+    // return (
+    //   <Wrapper>
+    //     <div className="admin-track-content">
+    //       <div className="admin-order-list-wrapper">
+    //         <div className="admin-order-list">
+    //           <div className="admin-order-list-heading">
+    //             <div className="admin-list-select-all">
+    //               <input
+    //                 type="checkbox"
+    //                 name="selectAll"
+    //                 id="selectAll"
+    //                 onChange={handleSelectAll}
+    //               />
+    //             </div>
 
-                <div className="admin-header-order-id">Parcel id</div>
-                <div className="admin-header-order-status">Status</div>
-                <div className="admin-header-client-name">Client</div>
-                <div className="admin-header-issue-date">issued Date</div>
-                <div className="admin-header-phone">otp</div>
-                <div className="admin-header-store">phoneNumber</div>
-              </div>
-              <ul className="admin-order-list-content">
-                {loading ? (
-                  <Loader />
-                ) : currentList ? (
-                  currentList.map((item, index) => {
-                    return (
-                      <div key={item.id} className="admin-order-list-item">
-                        <div className="admin-order-item-select">
-                          <input
-                            type="checkbox"
-                            name={`${item.name}`}
-                            id={item.id}
-                            checked={selectedParcel.includes(item.id)}
-                            onChange={(e) => handleCheck(e)}
-                          />
-                        </div>
-                        <div className="admin-order-store">{item.parcelId}</div>
-                        <div className="admin-order-status">
-                          {item.active ? (
-                            <MdPending
-                              style={{ color: "rgba(255, 135, 0, 0.5)" }}
-                            />
-                          ) : (
-                            <AiFillCheckCircle
-                              style={{ color: "rgba(51, 214, 159, 0.5)" }}
-                            />
-                          )}
-                        </div>
-                        <div className="admin-client-name">{item.name}</div>
-                        <div className="admin-issue-date">
-                          {dateFormatter(item.createdAt)}
-                        </div>
-                        <div className="admin-phone">{item.phoneNumber}</div>
+    //             <div className="admin-tracker-order-id">Parcel id</div>
+    //             <div className="admin-tracker-order-status">Status</div>
+    //             <div className="admin-tracker-client-name">Client</div>
+    //             <div className="admin-tracker-issue-date">issued Date</div>
+    //             <div className="admin-tracker-phone">otp</div>
+    //             <div className="admin-tracker-store">phoneNumber</div>
+    //           </div>
+    //           <ul className="admin-order-list-content">
+    //             {loading ? (
+    //               <Loader />
+    //             ) : currentList ? (
+    //               currentList.map((item, index) => {
+    //                 return (
+    //                   <div key={item.id} className="admin-order-list-item">
+    //                     <div className="admin-order-item-select">
+    //                       <input
+    //                         type="checkbox"
+    //                         name={`${item.name}`}
+    //                         id={item.id}
+    //                         checked={selectedParcel.includes(item.id)}
+    //                         onChange={(e) => handleCheck(e)}
+    //                       />
+    //                     </div>
+    //                     <div className="admin-order-store">{item.parcelId}</div>
+    //                     <div className="admin-order-status">
+    //                       {item.active ? (
+    //                         <MdPending
+    //                           style={{ color: "rgba(255, 135, 0, 0.5)" }}
+    //                         />
+    //                       ) : (
+    //                         <AiFillCheckCircle
+    //                           style={{ color: "rgba(51, 214, 159, 0.5)" }}
+    //                         />
+    //                       )}
+    //                     </div>
+    //                     <div className="admin-client-name">{item.name}</div>
+    //                     <div className="admin-issue-date">
+    //                       {dateFormatter(item.createdAt)}
+    //                     </div>
+    //                     <div className="admin-phone">
+    //                       {item.otpVerified ? item.otp : "not verified"}
+    //                     </div>
 
-                        <div className="admin-link">
-                          <Link href={`/admin/${item.id}`}>
-                            <BsFillArrowRightCircleFill />
-                          </Link>
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <Loader />
-                )}
-              </ul>
-              <div className="admin-order-list-footer">
-                <div className="admin-order-count">
-                  <p>
-                    Orders: <span>{}</span>
-                  </p>
-                </div>
-                <div className="admin-order-button-wrapper">
-                  <button onClick={() => setModal(true)}>confirm</button>
-                </div>
-                <div className="admin-order-list-pagination">
-                  <ReactPaginate
-                    breakLabel="..."
-                    nextLabel={<AiOutlineRight />}
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={3}
-                    pageCount={pageCount}
-                    previousLabel={<AiOutlineLeft />}
-                    containerClassName="pagination-btn-wrapper"
-                    pageClassName="pagination-page-btn"
-                    nextLinkClassName="pagination-next-btn"
-                    previousLinkClassName="pagination-prev-btn"
-                    activeLinkClassName="pagination-active-btn"
-                    // renderOnZeroPageCount={null}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Wrapper>
-    );
+    //                     <div className="admin-link">
+    //                       <Link href={`/admin/${item.id}`}>
+    //                         <BsFillArrowRightCircleFill />
+    //                       </Link>
+    //                     </div>
+    //                   </div>
+    //                 );
+    //               })
+    //             ) : (
+    //               <Loader />
+    //             )}
+    //           </ul>
+    //           <div className="admin-order-list-footer">
+    //             <div className="admin-order-count">
+    //               <p>
+    //                 Orders: <span>{}</span>
+    //               </p>
+    //             </div>
+    //             <div className="admin-order-button-wrapper">
+    //               <button onClick={() => setModal(true)}>confirm</button>
+    //             </div>
+    //             <div className="admin-order-list-pagination">
+    //               <ReactPaginate
+    //                 breakLabel="..."
+    //                 nextLabel={<AiOutlineRight />}
+    //                 onPageChange={handlePageClick}
+    //                 pageRangeDisplayed={3}
+    //                 pageCount={pageCount}
+    //                 previousLabel={<AiOutlineLeft />}
+    //                 containerClassName="pagination-btn-wrapper"
+    //                 pageClassName="pagination-page-btn"
+    //                 nextLinkClassName="pagination-next-btn"
+    //                 previousLinkClassName="pagination-prev-btn"
+    //                 activeLinkClassName="pagination-active-btn"
+    //                 // renderOnZeroPageCount={null}
+    //               />
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </Wrapper>
+    // );
   }
   return <div></div>;
 };
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const session = await getSession(context);
-  if (session && session.user?.email) {
-    const activeOrder = await prisma.tracker.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
+// export const getServerSideProps = async (
+//   context: GetServerSidePropsContext
+// ) => {
+//   const session = await getSession(context);
+//   if (session && session.user?.email) {
+//     const activeOrder = await prisma.tracker.findMany({
+//       orderBy: {
+//         createdAt: "desc",
+//       },
 
-      take: 10,
-    });
-    const activeOrderCount = await prisma.tracker.aggregate({
-      _count: true,
-    });
-    let activeData = activeOrder.map(({ userId, createdAt, ...rest }) => {
-      return { ...rest, createdAt: JSON.stringify(createdAt) };
-    });
-    return {
-      props: {
-        activeOrderCount,
-        activeData,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-};
+//       take: 10,
+//     });
+//     const activeOrderCount = await prisma.tracker.aggregate({
+//       _count: true,
+//     });
+//     let activeData = activeOrder.map(({ userId, createdAt, ...rest }) => {
+//       return { ...rest, createdAt: JSON.stringify(createdAt) };
+//     });
+//     return {
+//       props: {
+//         activeOrderCount,
+//         activeData,
+//       },
+//     };
+//   }
+//   return {
+//     props: {},
+//   };
+// };
 
 export default TrackAdmin;

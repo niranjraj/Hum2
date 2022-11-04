@@ -12,6 +12,7 @@ export interface parcel {
   name: string;
   phoneNumber: string;
   location: string;
+  otp: string;
   active: boolean;
   otpVerified: boolean;
   createdAt: string;
