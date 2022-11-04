@@ -187,16 +187,21 @@ export const OrderPage2 = (props: OrderProps2) => {
                       />
                     </label>
                     <label>
-                      <Field
-                        type="radio"
-                        name="category"
-                        value="PaulsCreamery"
-                      />
+                      <Field type="radio" name="category" value="LaFornoCafe" />
                       <Image
-                        src="/PaulsCreamery.png"
+                        src="/LaFornoCafe.png"
                         width="150"
                         height="150"
-                        alt="Paul's Creamery"
+                        alt="LaFornoCafe"
+                      />
+                    </label>
+                    <label>
+                      <Field type="radio" name="category" value="BikashBabu" />
+                      <Image
+                        src="/BikashBabu.png"
+                        width="150"
+                        height="150"
+                        alt="BikashBabu"
                       />
                     </label>
                     <label>
@@ -264,6 +269,19 @@ export const OrderPage3 = (props: OrderProps3) => {
   const handleSubmit = (values: FormValues) => {
     props.next(values);
   };
+  const handlePdf = () => {
+    fetch("/pdf/LFCMenu.pdf").then((response) => {
+      response.blob().then((blob) => {
+        // Creating new object of PDF file
+        const fileURL = window.URL.createObjectURL(blob);
+        // Setting various property values
+        let alink = document.createElement("a");
+        alink.href = fileURL;
+        alink.download = "SamplePDF.pdf";
+        alink.click();
+      });
+    });
+  };
 
   return (
     <div className="order-page-3">
@@ -302,6 +320,12 @@ export const OrderPage3 = (props: OrderProps3) => {
 
                 {props.formData.category == "Other" && (
                   <Input label="Enter Store" name="store" />
+                )}
+                {props.formData.category == "LaFornoCafe" && (
+                  <button className="download-btn" onClick={handlePdf}>
+                    {" "}
+                    Download Menu
+                  </button>
                 )}
                 <FieldArray
                   name="orderItem"

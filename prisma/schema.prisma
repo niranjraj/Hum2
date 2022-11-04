@@ -94,10 +94,15 @@ model OrderItem {
 
 model Tracker {
   id           String    @id @default(cuid())
-  trackerNumber String? 
+ parcelId  String? 
   otp           String?
-  otpVerifed    Boolean  @default(false)
-  userId       String
+  phoneNumber  String
+  location      String?
+  name          String?
+  active        Boolean @default(true)
+  otpVerified    Boolean  
+  userId        String
+  createdAt     DateTime   @default(now())
   user         User     @relation(fields: [userId], references: [id])
 
 }

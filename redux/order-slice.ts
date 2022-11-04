@@ -84,7 +84,6 @@ export const {
   updateActiveOrder,
 } = orderSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectFormValue = (state: RootState) => state.order.formValue;
 export const selectActiveOrder = (state: RootState) => state.order.activeOrder;
 export default orderSlice.reducer;

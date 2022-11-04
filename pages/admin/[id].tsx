@@ -5,7 +5,7 @@ import SideNav from "../../components/SideNav";
 
 import Link from "next/link";
 import { useState } from "react";
-import { current } from "@reduxjs/toolkit";
+
 import prisma from "../../utils/prismaInit";
 import { config, statusColors } from "../../utils/initialValues";
 import { useSession } from "next-auth/react";
@@ -13,6 +13,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { MdPaid } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { Serialized } from "../../types/order";
+import Wrapper from "../../layout/Wrapper";
 
 const AdminPreview: NextPage<{ serializedOrder: Serialized }> = (props) => {
   const { data: session, status } = useSession({ required: true });
@@ -51,8 +52,7 @@ const AdminPreview: NextPage<{ serializedOrder: Serialized }> = (props) => {
   }
   if (session && session.user.role == "admin") {
     return (
-      <div className="admin-preview-container">
-        <SideNav />
+      <Wrapper addClass="admin-preview-container">
         <div className="admin-preview-content-wrapper">
           {modal && (
             <div className="modal-wrapper">
@@ -174,7 +174,7 @@ const AdminPreview: NextPage<{ serializedOrder: Serialized }> = (props) => {
             </button>
           </div>
         </div>
-      </div>
+      </Wrapper>
     );
   }
   return <div></div>;

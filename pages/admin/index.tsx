@@ -32,6 +32,8 @@ import Loader from "../../components/Loader";
 
 import { createDoc } from "../../utils/documentGenerator";
 import { setErrorAdminValue } from "../../redux/util-slice";
+import Filter from "../../components/Filter";
+import Wrapper from "../../layout/Wrapper";
 
 const initialValue = {
   dateRange: [null, null],
@@ -109,31 +111,6 @@ const Admin: NextPage = (props) => {
     }
   };
 
-  const handleRequest = async (values: adminQuery) => {
-    setLoading(true);
-    try {
-      const res = await fetch(`${config.url.API_URL}/api/order/admin`, {
-        body: JSON.stringify(values),
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const response = await res.json();
-
-      dispatch(setAdminOrder(response.newOrder));
-      dispatch(setAdminCount(response.count));
-    } catch (error) {
-      dispatch(setErrorAdminValue("Can't fetch resources"));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSubmit = (values: adminQuery) => {
-    handleRequest(values);
-    setFilterValues(values);
-  };
   const handleDownload = async () => {
     setLoading(true);
     setDisabled(true);
@@ -200,9 +177,7 @@ const Admin: NextPage = (props) => {
   }
   if (session && session?.user?.role == "admin") {
     return (
-      <div className="admin-container">
-        <div className="mobile-only-view">Please view in Desktop</div>
-        <SideNav />
+      <Wrapper addClass="admin-container">
         <div className="admin-content-wrapper">
           {adminError && <div className="error-sign-wrapper">{adminError}</div>}
           {modal.state && (
@@ -237,7 +212,7 @@ const Admin: NextPage = (props) => {
               </div>
             </div>
           )}
-          <div className="filter-wrapper">
+          {/* <div className="filter-wrapper">
             <Formik initialValues={initialValue} onSubmit={handleSubmit}>
               {({ values }) => (
                 <Form className="admin-filter-options">
@@ -268,7 +243,8 @@ const Admin: NextPage = (props) => {
                 </Form>
               )}
             </Formik>
-          </div>
+          </div> */}
+          <Filter setFilterValues={setFilterValues} setLoading={setLoading} />
           <div className="admin-order-list-wrapper">
             <div className="admin-order-list">
               <div className="admin-order-list-heading">
@@ -344,7 +320,7 @@ const Admin: NextPage = (props) => {
               <div className="admin-order-list-footer">
                 <div className="admin-order-count">
                   <p>
-                    Order count: <span>{adminOrderCount}</span>
+                    Orders: <span>{adminOrderCount}</span>
                   </p>
                 </div>
                 <div className="admin-order-button-wrapper">
@@ -382,7 +358,7 @@ const Admin: NextPage = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </Wrapper>
     );
   }
 

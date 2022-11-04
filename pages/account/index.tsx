@@ -1,8 +1,8 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
 import { useSession, signOut, getSession } from "next-auth/react";
-import { Item, FormValues, ActiveOrder } from "../types/order";
+import { Item, FormValues, ActiveOrder } from "../../types/order";
 import Image from "next/image";
-import prisma from "../utils/prismaInit";
+import prisma from "../../utils/prismaInit";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -12,19 +12,23 @@ import {
   OrderPage2,
   OrderPage3,
   OrderPage4,
-} from "../components/OrderPage";
-import SideNav from "../components/SideNav";
+} from "../../components/OrderPage";
+
 import moment from "moment";
-import { wrapper } from "../redux/store";
+import { wrapper } from "../../redux/store";
 import {
   setActiveOrder,
   setFormValue,
   updateActiveOrder,
-} from "../redux/order-slice";
+} from "../../redux/order-slice";
 
-import { useAppSelector, useAppDispatch } from "../redux/redux-hook";
-import { setErrorAccountValue, setErrorAdminValue } from "../redux/util-slice";
-import { config, paidColors, statusColors } from "../utils/initialValues";
+import { useAppSelector, useAppDispatch } from "../../redux/redux-hook";
+import {
+  setErrorAccountValue,
+  setErrorAdminValue,
+} from "../../redux/util-slice";
+import { config, paidColors, statusColors } from "../../utils/initialValues";
+import Wrapper from "../../layout/Wrapper";
 
 const Account: NextPage<{ userId: string }> = (props) => {
   const orderItemRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -187,8 +191,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
 
   if (status === "authenticated") {
     return (
-      <div className="account-container">
-        <SideNav />
+      <Wrapper addClass="account-container">
         {accountError && (
           <div
             className="error-sign-wrapper"
@@ -365,7 +368,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
             </div>
           </div>
         )}
-      </div>
+      </Wrapper>
     );
   }
   return <div></div>;

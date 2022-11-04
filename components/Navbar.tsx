@@ -39,54 +39,6 @@ const Navbar = () => {
           <Image src="/humlogo.png" height="47" width="100" alt="Hum" />
         </div>
         <ul className={`nav-item-wrapper `}>
-          <li>
-            <Link href="https://humservices.in/">Home</Link>
-          </li>
-          <li>
-            <Link href="https://humservices.in/about-us/">About</Link>
-          </li>
-          <li className="service-item">
-            <div className="service-item-text">
-              Services
-              <svg
-                className="ast-arrow-svg"
-                xmlns="http://www.w3.org/2000/svg"
-                version="1.1"
-                x="0px"
-                y="0px"
-                width="10px"
-                height="10px"
-                viewBox="57 35.171 26 16.043"
-                enableBackground="new 57 35.171 26 16.043"
-              >
-                <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
-              </svg>
-            </div>
-
-            <ul className="sub-menu">
-              <li>
-                <Link href="https://humservices.in/home-services/">
-                  Home Services
-                </Link>
-              </li>
-              <li>
-                <Link href="https://humservices.in/delivery-services/">
-                  Delivery Services
-                </Link>
-              </li>
-              <li>
-                <Link href="https://humservices.in/deepcleaning/">
-                  Deep Cleaning
-                </Link>
-              </li>
-              <li>
-                <Link href="https://humservices.in/lifeart/">Life Art</Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <Link href="https://humservices.in/contact/">Contact</Link>
-          </li>
           {status === "unauthenticated" && (
             <li className="hidden-login">
               <Link href="/login">Login</Link>

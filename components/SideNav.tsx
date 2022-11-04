@@ -32,7 +32,18 @@ const SideNav = () => {
       <div className={`side-nav-item-wrapper ${menu ? "open-menu" : ""}`}>
         <ul className="side-nav-items">
           <li>
-            <Link href="/">Home</Link>
+            {session && session.user.role == "admin" ? (
+              <Link href="/admin">Orders</Link>
+            ) : (
+              <Link href="/account">Orders</Link>
+            )}
+          </li>
+          <li>
+            {session && session.user.role == "admin" ? (
+              <Link href="/admin/track">Track</Link>
+            ) : (
+              <Link href="/account/track">Track</Link>
+            )}
           </li>
           <li>
             <button className="side-nav-logout" onClick={() => signOut()}>

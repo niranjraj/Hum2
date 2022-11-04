@@ -3,8 +3,12 @@ export const category = [
   "ExoticaStore",
   "Dominos",
   "SupremeGourmet",
-  "PaulsCreamery",
-  "SankersCoffe",
+
+  "Sijis",
+  "Paragon",
+  "Springs",
+  "BikashBabu",
+  "LaFornoCafe",
   "Other",
 ];
 
@@ -28,6 +32,18 @@ export const paidColors = {
   },
   paid: {
     backgroundColor: "#87F994",
+    color: "#369d42",
+    transColor: "rgba(135, 249, 148, 0.5)",
+  },
+};
+export const verifiedColors = {
+  notVerified: {
+    backgroundColor: "#a62b2b",
+    color: "#a62b2b",
+    transColor: "rgb(249, 135, 135, 0.5)",
+  },
+  verifed: {
+    backgroundColor: "#369d42",
     color: "#369d42",
     transColor: "rgba(135, 249, 148, 0.5)",
   },

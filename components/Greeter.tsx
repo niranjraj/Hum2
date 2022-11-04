@@ -5,8 +5,10 @@ import DeliveryIcon from "./DeliveryIcon";
 import WhatsappIcon from "./WhatsappIcon";
 import EmailIcon from "./EmailIcon";
 import GmapIcon from "./GmapIcon";
+import Image from "next/image";
 import { useRouter } from "next/router";
-
+import { category } from "../utils/initialValues";
+import { GrLinkNext } from "react-icons/gr";
 const mailInfo = {
   id: "reachus@humservices.org",
   subject: "Enquiry or Issue",
@@ -15,7 +17,78 @@ const Greeter = () => {
   const router = useRouter();
   return (
     <div className="greeter-container">
-      <div className="greeter-main-content">
+      <div className="greeter-banner-wrapper"></div>
+      <h1 className="greeter-header">
+        Trivandrum is Now Just a <span>Hum</span> Away
+      </h1>
+      <button className="order-now-btn">
+        Order Now <GrLinkNext />
+      </button>
+
+      <div className="greeter-text">
+        <div className="line">
+          Building communities... and communities within communities.
+        </div>
+        <div className="line">
+          HUM is a community platform that aims to connect professional and
+        </div>
+        <div className="line">qualified service providers with clients.</div>
+      </div>
+      <div className="banner-wrapper">
+        <h3>Our Offers</h3>
+        <div className="banner-slider">
+          <div className="slide slide-1">
+            <Image
+              src={"/banner.jpg"}
+              alt="banner"
+              //   fill
+              //   sizes="(max-width: 768px) 100vw,
+              //  (max-width: 500px) 50vw,
+              //  33vw"
+              width="1000"
+              height="700"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="slider-partner">
+        <h2>Our store partners</h2>
+        <div className="slider-container">
+          {category.map((item) => (
+            <div key={item}>
+              <Image src={`/${item}.png`} width="150" height="100" alt={item} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="contact-container">
+        <h2>Get in Touch</h2>
+        <div className="logo-container">
+          <Image src="/humlogo.png" width="150" height="150" alt="Hum" />
+        </div>
+        <div className="contact-links">
+          <div className="contact-icon-wrapper">
+            <Link
+              href={`https://wa.me/+919400200462`}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <WhatsappIcon />
+            </Link>
+          </div>
+          <div className="contact-icon-wrapper">
+            <Link href={`mailto:${mailInfo.id}?subject=${mailInfo.subject}`}>
+              <EmailIcon />
+            </Link>
+          </div>
+          <div className="contact-icon-wrapper">
+            <Link href="https://www.google.com/maps/place/HUM+Services/@8.544003,76.941334,16z/data=!4m5!3m4!1s0x0:0xc678b6d2dd551d4c!8m2!3d8.5440035!4d76.9413335?hl=en">
+              <GmapIcon />
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/* <div className="greeter-main-content">
         <div className="greeter-text">
           <h1 className="greeter-header">
             Trivandrum is Now Just a <span>Hum</span> Away
@@ -54,7 +127,7 @@ const Greeter = () => {
             <GmapIcon />
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

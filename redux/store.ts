@@ -2,12 +2,14 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import OrderReducer from "./order-slice";
 import UtilReducer from "./util-slice";
+import TrackReducer from "./track-slice";
 // ...
 const store = () =>
   configureStore({
     reducer: {
       order: OrderReducer,
       util: UtilReducer,
+      track: TrackReducer,
     },
   });
 

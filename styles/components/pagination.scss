@@ -1,5 +1,9 @@
+@use "../base/function.scss" as *;
 .admin-order-list-pagination {
   width: 30%;
+  @include tablet-landscape-and-below {
+    width: 20%;
+  }
 }
 .pagination-btn-wrapper {
   display: flex;
