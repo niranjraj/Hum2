@@ -7,11 +7,13 @@ interface utilState {
   errorSign: string | null;
   errorAccount: string | null;
   errorAdmin: string | null;
+  errorTrack: string | null;
 }
 
 const initialState: utilState = {
   errorSign: null,
   errorAccount: null,
+  errorTrack: null,
   errorAdmin: null,
 };
 
@@ -29,11 +31,18 @@ export const utilSlice = createSlice({
     setErrorAdminValue: (state, action: PayloadAction<string | null>) => {
       state.errorAdmin = action.payload;
     },
+    setErrorTrackValue: (state, action: PayloadAction<string | null>) => {
+      state.errorTrack = action.payload;
+    },
   },
 });
 
-export const { setErrorSignValue, setErrorAccountValue, setErrorAdminValue } =
-  utilSlice.actions;
+export const {
+  setErrorSignValue,
+  setErrorAccountValue,
+  setErrorAdminValue,
+  setErrorTrackValue,
+} = utilSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 

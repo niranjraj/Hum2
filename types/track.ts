@@ -17,3 +17,8 @@ export interface parcel {
   otpVerified: boolean;
   createdAt: string;
 }
+
+export type currentParcel = {
+  state: boolean;
+  parcelItem: parcel | null;
+};

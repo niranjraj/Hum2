@@ -6,6 +6,7 @@ import {
   FormValues,
   ActiveOrder,
   InitialCategory,
+  Serialized,
 } from "../types/order";
 
 import { HYDRATE } from "next-redux-wrapper";
@@ -13,7 +14,7 @@ import { HYDRATE } from "next-redux-wrapper";
 interface orderState {
   formValue: FormValues;
   activeOrder: ActiveOrder[];
-  adminOrder: AdminOrder[];
+  adminOrder: Serialized[];
   selectedOrder: string[];
   adminCount: number;
   initialCategory: InitialCategory;
@@ -55,7 +56,7 @@ export const orderSlice = createSlice({
     setSelectedOrder: (state, action: PayloadAction<string[]>) => {
       state.selectedOrder = action.payload;
     },
-    setAdminOrder: (state, action: PayloadAction<AdminOrder[]>) => {
+    setAdminOrder: (state, action: PayloadAction<Serialized[]>) => {
       state.adminOrder = action.payload;
     },
     updateActiveOrder: (state, action: PayloadAction<ActiveOrder>) => {

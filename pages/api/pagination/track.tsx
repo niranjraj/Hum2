@@ -40,6 +40,7 @@ const adminHandler: NextApiHandler = async (req, res) => {
       res.status(200).json({ newOrder });
     }
     if (req.method == "GET") {
+      console.log("here");
       const page = parseInt(req.query.page as string);
 
       const activeOrder = await prisma.tracker.findMany({

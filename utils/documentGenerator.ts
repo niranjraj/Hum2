@@ -1,5 +1,5 @@
 import { saveAs } from "file-saver";
-import { ActiveOrder, Item } from "../types/order";
+import { ActiveOrder, Item, Serialized } from "../types/order";
 import {
   Document,
   Packer,
@@ -41,7 +41,7 @@ const orderItem = (item: Item) => {
     ],
   });
 };
-const table = (item: ActiveOrder) => {
+const table = (item: Serialized) => {
   return new TableRow({
     children: [
       new TableCell({
@@ -52,7 +52,7 @@ const table = (item: ActiveOrder) => {
         },
       }),
       new TableCell({
-        children: [new Paragraph({ text: item.name })],
+        children: [new Paragraph({ text: item.name ? item.name : "" })],
         width: {
           size: 3000,
           type: WidthType.DXA,
@@ -108,7 +108,13 @@ const table = (item: ActiveOrder) => {
                   }),
                 ],
               }),
-              ...item.orderItem.map((prod) => orderItem(prod)),
+              ...item.orderItem.map((prod) =>
+                orderItem({
+                  name: prod.name ? prod.name : "",
+                  unit: prod.unit ? prod.unit : "",
+                  quantity: prod.quantity ? prod.quantity : 0,
+                })
+              ),
             ],
           }),
         ],
@@ -116,7 +122,7 @@ const table = (item: ActiveOrder) => {
     ],
   });
 };
-export const createDoc = async (response: ActiveOrder[]) => {
+export const createDoc = async (response: Serialized[]) => {
   console.log(response);
   const doc = new Document({
     sections: [

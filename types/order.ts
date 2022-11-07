@@ -55,7 +55,6 @@ export interface Serialized {
   orderItem: {
     name: string | null;
     quantity: number | null;
-
     unit: string | null;
   }[];
 }

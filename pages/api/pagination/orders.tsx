@@ -24,6 +24,15 @@ const adminHandler: NextApiHandler = async (req, res) => {
           ...(data.category === "" ? {} : { category: data.category }),
         },
         skip: data.pageNumber,
+        include: {
+          orderItem: {
+            select: {
+              name: true,
+              quantity: true,
+              unit: true,
+            },
+          },
+        },
         take: 10,
         ...(!data.dateRange[0] && !data.dateRange[1]
           ? {
@@ -46,7 +55,15 @@ const adminHandler: NextApiHandler = async (req, res) => {
         orderBy: {
           createdAt: "desc",
         },
-
+        include: {
+          orderItem: {
+            select: {
+              name: true,
+              quantity: true,
+              unit: true,
+            },
+          },
+        },
         skip: page,
         take: 10,
       });
