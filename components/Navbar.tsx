@@ -32,7 +32,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="#/account/track">
                   <hr />
                   Track <hr />
                 </Link>

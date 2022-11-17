@@ -1,0 +1,448 @@
+.admin-container [type=checkbox] {
+  cursor: pointer;
+}
+
+.admin-content-wrapper {
+  height: 100%;
+  padding: 2em 3em;
+  width: 80%;
+  text-align: center;
+  color: #1c1e2b;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-content-wrapper {
+    width: 100%;
+    padding: 2em 1em;
+  }
+}
+
+.filter-wrapper {
+  height: 10%;
+  background-color: #ffffff;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.admin-order-list-wrapper {
+  background-color: #ffffff;
+  height: 90%;
+}
+
+.admin-order-list {
+  position: relative;
+  overflow-y: hidden;
+  height: 100%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.admin-order-list-heading {
+  overflow: hidden;
+  display: flex;
+  height: 10%;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid rgb(231, 230, 232);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  line-height: 24px !important;
+  background-color: #f9fafc;
+}
+.admin-order-list-heading div {
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.17px;
+}
+
+.admin-order-list-content {
+  display: flex;
+  overflow-y: scroll;
+  height: 80%;
+  width: 100%;
+  flex-direction: column;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-order-list-content {
+    height: 70%;
+  }
+}
+
+.admin-order-list-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eaecf8;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-order-list-item {
+    padding: 1em;
+  }
+}
+
+.admin-order-item-select,
+.admin-list-select-all {
+  width: 58px;
+  max-width: 58px !important;
+  min-width: 58px !important;
+}
+
+.admin-order-id,
+.admin-header-order-id,
+.admin-header-order-status,
+.admin-order-status {
+  width: 10%;
+}
+
+.admin-header-client-name,
+.admin-client-name {
+  width: 30%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1em;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-header-client-name,
+.admin-client-name {
+    width: 40%;
+  }
+}
+
+.admin-header-issue-date,
+.admin-issue-date {
+  width: 10%;
+  padding: 1em;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-header-issue-date,
+.admin-issue-date {
+    width: 20%;
+  }
+}
+
+.admin-header-store,
+.admin-order-store {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .admin-header-store {
+    display: none;
+  }
+}
+
+.admin-header-phone,
+.admin-phone {
+  width: 20%;
+  padding: 1em;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-header-phone,
+.admin-phone {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .admin-category {
+    display: none;
+  }
+}
+
+.admin-link {
+  width: 10%;
+}
+.admin-link svg {
+  height: 30px;
+  width: 30px;
+  color: #1c1e2b;
+}
+.admin-link svg:hover {
+  color: #848bc0;
+  transform: rotate(-45deg);
+}
+
+.admin-order-status svg {
+  height: 30px;
+  width: 30px;
+}
+
+.admin-order-list-footer {
+  background-color: #f6f8fc;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-top: 1px solid rgb(231, 230, 232);
+  width: 100%;
+  height: 10%;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-order-list-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.admin-order-button-wrapper button {
+  outline: none;
+  border: none;
+  margin-right: 1em;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: "Montserrat-Semibold";
+  text-transform: capitalize;
+  border-radius: 3px;
+  background-color: #282b3f;
+}
+@media only screen and (max-width: 1024px) {
+  .admin-order-button-wrapper button {
+    padding: 0.75em 1em;
+  }
+}
+
+.admin-filter-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.admin-filter-options select {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.5em 1.25em;
+  background: #ffffff;
+  color: #aeb1c5;
+  border: 1px solid #dfe3fa;
+  font-size: 1rem;
+}
+
+.admin-order-count p {
+  font-size: 1.5rem;
+  font-family: "Montserrat";
+}
+.admin-order-count p span {
+  font-family: "Montserrat-Semibold";
+}
+@media only screen and (max-width: 1024px) {
+  .admin-order-count p {
+    font-size: 1.2rem;
+  }
+}
+
+.admin-preview-container {
+  overflow-y: hidden;
+}
+
+.admin-preview-content-wrapper {
+  height: 100%;
+  padding: 2em 3em;
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: center;
+  color: #1c1e2b;
+}
+
+.admin-order-detail-wrapper {
+  background-color: #ffffff;
+  width: 70%;
+  padding: 2em 3em;
+}
+
+.admin-preview-buttons-wrapper {
+  height: 300px;
+  width: 20%;
+  background-color: #ffffff;
+  padding: 2em 3em;
+}
+.admin-preview-buttons-wrapper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  padding: 1em;
+  cursor: pointer;
+  margin-bottom: 2em;
+  font-family: "Montserrat-Semibold";
+}
+.admin-preview-buttons-wrapper button svg {
+  margin-right: 0.5em;
+}
+
+.admin-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.admin-preview-header .admin-preview-id {
+  font-size: 1.4rem;
+  font-family: "Montserrat-Semibold";
+  color: #282b3f;
+  line-height: 1.125;
+  letter-spacing: -0.25px;
+  padding-bottom: 0.5em;
+}
+.admin-preview-header .admin-order-status {
+  border-radius: 5px;
+  margin-right: 1.25em;
+  height: 2.5em;
+  width: 6.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(51, 214, 159, 0.04);
+}
+.admin-preview-header .admin-order-status .active-order-status-circle {
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: #33d7a0;
+}
+.admin-preview-header .admin-order-status p {
+  font-size: 0.85rem;
+  line-height: 1.125;
+  letter-spacing: -0.25px;
+  color: #33d7a0;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.admin-preview-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2em 0;
+}
+.admin-preview-info h3 {
+  font-size: 1.2rem;
+  font-family: "Montserrat-Semibold";
+  color: #282b3f;
+  line-height: 1.125;
+  letter-spacing: -0.25px;
+}
+.admin-preview-info p {
+  padding: 0.5em 0 0.5em 0.75em;
+}
+.admin-preview-info p span {
+  font-family: "Montserrat-Semibold";
+  color: #282b3f;
+  font-weight: 600;
+}
+
+.admin-preview-order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 1px solid rgb(231, 230, 232);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  max-height: 54px !important;
+  min-height: 54px !important;
+  line-height: 24px !important;
+  background-color: #f9fafc;
+}
+
+.admin-preview-order {
+  height: 300px;
+  background-color: #f4f5fa;
+  overflow-y: scroll;
+}
+
+.admin-preview-item {
+  display: flex;
+  margin: 0.5em;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  padding: 1em 0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.modal-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: rgba(40, 43, 63, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #ffffff;
+  height: 500px;
+  width: 500px;
+  border-radius: 2px;
+  padding: 1em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1c1e2b;
+  font-size: 1.4rem;
+  font-family: "Montserrat-Semibold";
+}
+.modal-container h3 {
+  padding-top: 2em;
+}
+.modal-container div {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.modal-container .cancel-btn {
+  border-radius: 5px;
+  padding: 1em 3em;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #f04c4c;
+}
+.modal-container .confirm-paid-btn {
+  border-radius: 5px;
+  padding: 1em 3em;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #33d7a0;
+}
+
+.order-preview-store {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-preview-store .admin-preview-store {
+  display: flex;
+  align-items: center;
+  padding: 0.75em 1em;
+  font-family: "Montserrat-Semibold";
+}
+.order-preview-store .admin-preview-store-name {
+  margin-right: 1em;
+}
+.order-preview-store .admin-preview-paid {
+  border: 2px solid #282b3f;
+  padding: 0.75em 1em;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  font-family: "Montserrat-Semibold";
+}/*# sourceMappingURL=admin.css.map */

@@ -1,0 +1,38 @@
+.info-container {
+  padding-top: 2em;
+  padding: 0 6em;
+  color: #1c1e2b;
+  background-color: #ffffff;
+}
+
+.info-wrapper {
+  display: flex;
+}
+
+.info-text {
+  width: 500px;
+  margin-left: 8em;
+  padding-top: 5em;
+}
+.info-text h2 {
+  font-size: 2rem;
+  font-family: "Montserrat-SemiBold";
+}
+
+.info-text-p {
+  margin-bottom: 3em;
+}
+.info-text-p p {
+  padding-top: 1em;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.contact-button {
+  background-color: #5b628b;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  border-radius: 30px;
+}/*# sourceMappingURL=info.css.map */

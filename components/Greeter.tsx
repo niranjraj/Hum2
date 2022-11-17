@@ -44,7 +44,12 @@ const Greeter = () => {
 
         <div className="banner-slider">
           <div className="slide slide-1">
-            <Image src={"/banner.jpg"} alt="banner" width="1000" height="700" />
+            <Image
+              src={"/loginhum.jpg"}
+              alt="banner"
+              width="1000"
+              height="700"
+            />
           </div>
         </div>
       </div>
