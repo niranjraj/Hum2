@@ -1,3 +1,5 @@
+import { Item, SerializedItem } from "../types/order";
+
 export const category = [
   "Nilgiris",
   "ExoticaStore",
@@ -35,6 +37,19 @@ export const paidColors = {
     color: "#369d42",
     transColor: "rgba(135, 249, 148, 0.5)",
   },
+};
+
+export const initialItems = (orderItems: SerializedItem[]) => {
+  try {
+    let orderCopy = ``;
+    orderItems.forEach(
+      (x) => (orderCopy += `${x.name}  ${x.quantity}  ${x.unit} \n`)
+    );
+
+    return orderCopy;
+  } catch (err) {
+    return "";
+  }
 };
 export const verifiedColors = {
   notVerified: {

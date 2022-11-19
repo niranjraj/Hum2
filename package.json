@@ -22,6 +22,7 @@
     "next-auth": "^4.15.0",
     "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
     "@types/react": "18.0.23",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-datepicker": "^4.4.2",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",

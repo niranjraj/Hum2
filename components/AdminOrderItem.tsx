@@ -2,18 +2,16 @@ import React, { Dispatch, SetStateAction } from "react";
 import type { GetServerSidePropsContext, NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import SideNav from "./SideNav";
-
-import Link from "next/link";
+import { initialItems } from "../utils/initialValues";
 import { useState } from "react";
-
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { config, statusColors } from "../utils/initialValues";
 import { useSession } from "next-auth/react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { MdPaid } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { Serialized } from "../types/order";
-import Wrapper from "../layout/Wrapper";
+import { FaCopy } from "react-icons/fa";
 
 type currentOrder = {
   state: boolean;
@@ -27,6 +25,12 @@ type Props = {
 const AdminOrderItem = (props: Props) => {
   const { data: session, status } = useSession({ required: true });
   const [modal, setModal] = useState(false);
+  const currentValue = initialItems(props.serializedOrder.orderItem);
+
+  const [copyState, setCopyState] = useState({
+    value: currentValue,
+    copied: false,
+  });
   const [currentPreview, setCurrentPreview] = useState(props.serializedOrder);
 
   const router = useRouter();
@@ -113,6 +117,7 @@ const AdminOrderItem = (props: Props) => {
             </p>
           </div>
         </div>
+
         <div className="order-preview-store">
           <div className="admin-preview-paid">
             {currentPreview.paid ? "Paid" : "Not Paid"}
@@ -124,8 +129,8 @@ const AdminOrderItem = (props: Props) => {
             <Image
               src={`/${currentPreview.category}.png`}
               alt={currentPreview.store ? currentPreview.store : "store"}
-              height="100"
-              width="100"
+              height="60"
+              width="60"
             />
           </div>
         </div>
@@ -143,6 +148,22 @@ const AdminOrderItem = (props: Props) => {
             {currentPreview.phoneNumber}
           </p>
         </div>
+
+        <CopyToClipboard
+          text={copyState.value}
+          onCopy={() =>
+            setCopyState((prev) => {
+              return {
+                value: prev.value,
+                copied: true,
+              };
+            })
+          }
+        >
+          <button className="copy-button">
+            <FaCopy />
+          </button>
+        </CopyToClipboard>
         <div className="admin-preview-order-header">
           <div className="admin-header-preview-name">Client</div>
           <div className="admin-header-preview-qty">Quantity</div>

@@ -42,6 +42,11 @@ export interface AdminOrder {
   phoneNumber: string;
   location: string;
 }
+export interface SerializedItem {
+  name: string | null;
+  quantity: number | null;
+  unit: string | null;
+}
 export interface Serialized {
   createdAt: string;
   id: string;
@@ -52,11 +57,7 @@ export interface Serialized {
   phoneNumber: string;
   location: string | null;
   category: string | null;
-  orderItem: {
-    name: string | null;
-    quantity: number | null;
-    unit: string | null;
-  }[];
+  orderItem: SerializedItem[];
 }
 
 export type OrderProps1 = {

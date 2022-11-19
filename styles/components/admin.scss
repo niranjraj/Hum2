@@ -257,9 +257,20 @@
     padding: 1em;
     cursor: pointer;
     margin-bottom: 2em;
+    background-color: #1c1e2b;
+    color: #dfe3fa;
     font-family: "Montserrat-Semibold";
+    transition: background 300ms ease, color 300ms ease;
     & svg {
       margin-right: 0.5em;
+      transition: margin 300ms ease;
+    }
+    &:hover {
+      background-color: #959cc3;
+      color: #1c1e2b;
+      & svg {
+        margin-right: 1em;
+      }
     }
   }
 }
@@ -354,6 +365,22 @@
   padding: 1em 0;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
+.admin-preview-name {
+  max-width: 70%;
+  width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.admin-preveiw-qty {
+  width: 10%;
+}
+.admin-preview-unit {
+  width: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .modal-wrapper {
   position: fixed;
@@ -430,5 +457,24 @@
     font-size: 1.2rem;
     border-radius: 5px;
     font-family: "Montserrat-Semibold";
+  }
+}
+
+.copy-button {
+  border: none;
+  padding: 0.5em 1.5em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  background-color: #1c1e2b;
+  transition: background 300ms ease;
+  & svg {
+    fill: #dfe3fa;
+    transition: fill 300ms ease;
+  }
+  &:hover {
+    background-color: #959cc3;
+    & svg {
+      fill: #1c1e2b;
+    }
   }
 }
