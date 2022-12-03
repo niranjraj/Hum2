@@ -20,6 +20,9 @@ const Greeter = () => {
           Trivandrum is Now Just a <span>Hum </span> Away
         </h1>
         <p> Building communities... and communities within communities.</p>
+        <p className="banner-pop-text">
+          delivery service available only on saturday
+        </p>
       </div>
 
       <button

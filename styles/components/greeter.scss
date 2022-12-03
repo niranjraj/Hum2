@@ -393,3 +393,12 @@
     }
   }
 }
+
+.banner-pop-text {
+  font-family: "Montserrat-Semibold" !important;
+  font-size: clamp(1.5rem, 4vw, 3rem) !important;
+  text-transform: capitalize;
+  color: #d8293a;
+  @include mobile-landscape-and-below {
+  }
+}
