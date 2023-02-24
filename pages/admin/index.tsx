@@ -61,7 +61,6 @@ const Admin: NextPage = (props) => {
   });
   const [loading, setLoading] = useState(false);
   const [disabel, setDisabled] = useState(false);
-  console.log(currentOrder);
 
   if (session && session?.user?.role == "user") {
     router.push("/");

@@ -57,6 +57,31 @@ export const initialItems = (currentOrder: Serialized) => {
     return "";
   }
 };
+export const selectedCopy = (
+  selectedOrder: string[],
+  currentList: Serialized[]
+) => {
+  try {
+    let orderCopy = ``;
+    if (selectedOrder.length < 1) {
+      return orderCopy;
+    } else {
+      const copyList = currentList.filter((item) => {
+        if (selectedOrder.includes(item.id)) {
+          return item;
+        }
+      });
+
+      copyList.forEach(
+        (x) => (orderCopy += `${x.name}\t\t${x.phoneNumber} ${x.store} \n`)
+      );
+    }
+    console.log(orderCopy);
+    return orderCopy;
+  } catch (err) {
+    return "";
+  }
+};
 export const verifiedColors = {
   notVerified: {
     backgroundColor: "#a62b2b",

@@ -23,7 +23,7 @@ import {
   setAdminOrder,
   setSelectedOrder,
 } from "../redux/order-slice";
-import { category, config } from "../utils/initialValues";
+import { category, config, selectedCopy } from "../utils/initialValues";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -36,6 +36,8 @@ import Filter from "./Filter";
 import Wrapper from "../layout/Wrapper";
 import { Serialized } from "../types/order";
 import { current } from "@reduxjs/toolkit";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { FaCopy } from "react-icons/fa";
 
 const initialValue = {
   dateRange: [null, null],
@@ -64,11 +66,21 @@ const AdminOrder = (props: Props) => {
   const adminOrderCount = useAppSelector((state) => state.order.adminCount);
   const selectedOrder = useAppSelector((state) => state.order.selectedOrder);
   const adminError = useAppSelector((state) => state.util.errorAdmin);
+  const [textToCopy, setTextToCopy] = useState(
+    selectedCopy(selectedOrder, currentList)
+  );
+  const [copyState, setCopyState] = useState({
+    value: selectedCopy(selectedOrder, currentList),
+    copied: false,
+  });
+
   const dataPerPage = 10;
 
   const pageCount = Math.ceil(adminOrderCount / dataPerPage);
 
   const dispatch = useAppDispatch();
+
+  console.log(selectedOrder);
 
   const dateFormatter = (date: string) => {
     return moment(date.split("T")[0], "YYYY-MM-DD").format("DD MMM YYYY");
@@ -82,6 +94,33 @@ const AdminOrder = (props: Props) => {
       dispatch(setSelectedOrder([]));
     }
   };
+  // const handleCopy = () => {
+  //   setLoading(true);
+  //   setDisabled(true);
+  //   try {
+  //     if (selectedOrder.length < 1) {
+  //       return "";
+  //     } else {
+  //       const copyList = currentList.filter((item) => {
+  //         if (selectedOrder.includes(item.id)) {
+  //           return item;
+  //         }
+  //       });
+
+  //       setCopyState((prev) => {
+  //         return {
+  //           value: selectedCopy(copyList),
+  //           copied: true,
+  //         };
+  //       });
+  //     }
+  //   } catch (err) {
+  //     dispatch(setErrorAdminValue("An error occured"));
+  //   } finally {
+  //     setDisabled(false);
+  //     setLoading(false);
+  //   }
+  // };
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSelectedOrder([...selectedOrder, e.target.id]));
     if (!e.target.checked) {
@@ -140,28 +179,28 @@ const AdminOrder = (props: Props) => {
     }
   };
 
-  const handleDownload = async () => {
-    setLoading(true);
-    setDisabled(true);
-    try {
-      if (selectedOrder.length < 1) {
-        await createDoc(currentList);
-      } else {
-        const downloadList = currentList.filter((item) => {
-          if (selectedOrder.includes(item.id)) {
-            return item;
-          }
-        });
-        await createDoc(downloadList as Serialized[]);
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch(setErrorAdminValue("An error occured"));
-    } finally {
-      setDisabled(false);
-      setLoading(false);
-    }
-  };
+  // const handleDownload = async () => {
+  //   setLoading(true);
+  //   setDisabled(true);
+  //   try {
+  //     if (selectedOrder.length < 1) {
+  //       await createDoc(currentList);
+  //     } else {
+  //       const downloadList = currentList.filter((item) => {
+  //         if (selectedOrder.includes(item.id)) {
+  //           return item;
+  //         }
+  //       });
+  //       await createDoc(downloadList as Serialized[]);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     dispatch(setErrorAdminValue("An error occured"));
+  //   } finally {
+  //     setDisabled(false);
+  //     setLoading(false);
+  //   }
+  // };
   const fetchData = async (pageNumber: number) => {
     setLoading(true);
     try {
@@ -337,8 +376,14 @@ const AdminOrder = (props: Props) => {
               >
                 confirm
               </button>
-              <button disabled={disabel} onClick={() => handleDownload()}>
-                Download
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    selectedCopy(selectedOrder, currentList)
+                  );
+                }}
+              >
+                Copy
               </button>
             </div>
             <div className="admin-order-list-pagination">
