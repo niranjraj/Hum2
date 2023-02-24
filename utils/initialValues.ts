@@ -1,4 +1,5 @@
-import { Item, SerializedItem } from "../types/order";
+import { current } from "@reduxjs/toolkit";
+import { Item, Serialized, SerializedItem } from "../types/order";
 
 export const category = [
   "Nilgiris",
@@ -39,10 +40,15 @@ export const paidColors = {
   },
 };
 
-export const initialItems = (orderItems: SerializedItem[]) => {
+type currentOrder = {
+  state: boolean;
+  orderItem: Serialized | null;
+};
+export const initialItems = (currentOrder: Serialized) => {
   try {
-    let orderCopy = ``;
-    orderItems.forEach(
+    let orderCopy = `${currentOrder.name}\n ${currentOrder.phoneNumber}\n`;
+
+    currentOrder.orderItem.forEach(
       (x) => (orderCopy += `${x.name}  ${x.quantity}  ${x.unit} \n`)
     );
 

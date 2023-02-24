@@ -25,7 +25,7 @@ type Props = {
 const AdminOrderItem = (props: Props) => {
   const { data: session, status } = useSession({ required: true });
   const [modal, setModal] = useState(false);
-  const currentValue = initialItems(props.serializedOrder.orderItem);
+  const currentValue = initialItems(props.serializedOrder);
 
   const [copyState, setCopyState] = useState({
     value: currentValue,
