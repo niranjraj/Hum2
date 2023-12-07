@@ -1,11 +1,11 @@
 import { NextApiHandler } from "next";
-import { getSession } from "next-auth/react";
 
 import prisma from "../../../utils/prismaInit";
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 const downloadHandler: NextApiHandler = async (req, res) => {
-  const session = await getSession({ req });
-
+  const session = await getServerSession(req, res, authOptions);
   if (session) {
     if (req.method == "POST") {
       const data = req.body;

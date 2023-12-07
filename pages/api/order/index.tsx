@@ -1,15 +1,18 @@
 import { NextApiHandler } from "next";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import prisma from "../../../utils/prismaInit";
-
+import { authOptions } from "../auth/[...nextauth]";
 const orderHandler: NextApiHandler = async (req, res) => {
-  const session = await getSession({ req });
+  console.log("request in backend");
+  console.log("session in backend");
+  const session = await getServerSession(req, res, authOptions);
+  console.log(session);
   if (session && session.user?.email) {
     if (req.method === "POST") {
       const user = await prisma.user.findUnique({
         where: { email: session.user?.email },
       });
-
+      console.log(user);
       const order = await prisma.order.create({
         data: {
           ...req.body,

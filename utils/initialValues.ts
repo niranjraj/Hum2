@@ -1,5 +1,4 @@
-import { current } from "@reduxjs/toolkit";
-import { Item, Serialized, SerializedItem } from "../types/order";
+import { Serialized } from "../types/order";
 
 export const category = [
   "Nilgiris",

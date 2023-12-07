@@ -1,7 +1,7 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
-import { useSession, signOut, getSession } from "next-auth/react";
-import { Item, FormValues, ActiveOrder } from "../../types/order";
+import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
+import { FormValues, Item } from "../../types/order";
 import prisma from "../../utils/prismaInit";
 
 import { useEffect, useRef, useState } from "react";
@@ -15,21 +15,18 @@ import {
 } from "../../components/OrderPage";
 
 import moment from "moment";
-import { wrapper } from "../../redux/store";
 import {
   setActiveOrder,
   setFormValue,
   updateActiveOrder,
 } from "../../redux/order-slice";
+import { wrapper } from "../../redux/store";
 
-import { useAppSelector, useAppDispatch } from "../../redux/redux-hook";
-import {
-  setErrorAccountValue,
-  setErrorAdminValue,
-} from "../../redux/util-slice";
-import { config, paidColors, statusColors } from "../../utils/initialValues";
+import { useRouter } from "next/router";
 import Wrapper from "../../layout/Wrapper";
-import Router, { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "../../redux/redux-hook";
+import { setErrorAccountValue } from "../../redux/util-slice";
+import { config, paidColors, statusColors } from "../../utils/initialValues";
 
 const Account: NextPage<{ userId: string }> = (props) => {
   const orderItemRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -63,6 +60,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
     }
   };
   const handleRequest = async (formValues: FormValues) => {
+    console.log("order request called from frontend");
     try {
       const res = await fetch(`${config.url.API_URL}/api/order`, {
         body: JSON.stringify(formValues),
@@ -72,6 +70,7 @@ const Account: NextPage<{ userId: string }> = (props) => {
         },
       });
       const response = await res.json();
+      console.log(response);
 
       dispatch(updateActiveOrder(response));
     } catch (error) {
